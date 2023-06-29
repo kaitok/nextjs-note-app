@@ -1,0 +1,14 @@
+{
+  "notes": [
+    {
+      "id": 1,
+      "title": "First Note",
+      "content": "Test"
+    },
+    {
+      "id": 2,
+      "title": "Second Note",
+      "content": "Test"
+    }
+  ]
+}
