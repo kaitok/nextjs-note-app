@@ -1,8 +1,11 @@
 import Image from 'next/image'
 import styles from './styles/Home.module.css'
 import Link from 'next/link'
+import { getData } from '@/app/utils/getData'
 
-export default function Home() {
+export default async function Home() {
+  const res = await getData('notes', {})
+  console.log(res)
   return (
     <div>
       <div className="m-10">
@@ -15,6 +18,16 @@ export default function Home() {
             Create Note
           </button>
         </Link>
+        <div>
+          {res.map((item, i) => {
+            return (
+              <div key={i}>
+                <p>{item.title}</p>
+                <p>{item.content}</p>
+              </div>
+            )
+          })}
+        </div>
       </div>
     </div>
   )
