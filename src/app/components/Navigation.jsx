@@ -2,7 +2,7 @@ export default function Navigation() {
   return(
     <div className="navbar bg-base-100 pt-5 px-5">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl">Note</a>
+        <a href="/" className="text-xl font-semibold">Note</a>
       </div>
       <div className="flex-none gap-2">
         <div className="form-control">
@@ -10,7 +10,7 @@ export default function Navigation() {
         </div>
         <div className="dropdown dropdown-end">
           <label tabindex="0" className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full bg-gray-500">
+            <div className="w-10 rounded-full bg-gray-100">
             </div>
           </label>
           <ul tabindex="0" className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
