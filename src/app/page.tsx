@@ -5,13 +5,12 @@ import { getData } from '@/app/utils/getData'
 
 export default async function Home() {
   const res = await getData('notes', {})
-  console.log(res)
   return (
     <div>
-      <div className="m-10">
-        <div className="flex justify-between items-center">
+      <div className="">
+        <div className="flex justify-between items-center mb-5">
           <div>
-            <span className="font-medium">All Notes</span>
+            <h1 className="font-medium">All Notes</h1>
           </div>
           <div>
             <Link href="/note">
@@ -25,7 +24,7 @@ export default async function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col w-full border-opacity-50 mt-5">
+        <div className="flex flex-col w-full border-opacity-50">
           {res.map((item, i) => {
             return (
               <div
