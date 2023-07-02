@@ -9,7 +9,6 @@ export default async function Home() {
   return (
     <div>
       <div className="m-10">
-        <h1>Note</h1>
         <Link href="/note">
           <button
             type="button"
