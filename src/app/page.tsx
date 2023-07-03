@@ -27,13 +27,15 @@ export default async function Home() {
         <div className="flex flex-col w-full border-opacity-50">
           {res.map((item, i) => {
             return (
-              <div
-                className="h-20 p-4 mb-5 border border-gray-200 rounded-md cursor-pointer"
-                key={i}
+              <Link
+                href={`/note/${item.id}`}
+                key={item.id}
+                className="note-link"
               >
-                <p>{item.title}</p>
-                <p>{item.content}</p>
-              </div>
+                <div className="h-20 p-4 mb-5 border border-gray-200 rounded-md cursor-pointer">
+                  <p>{item.title}</p>
+                </div>
+              </Link>
             )
           })}
         </div>
