@@ -5,7 +5,7 @@ import { getData } from '@/app/utils/getData'
 import formatDate from '@/app/utils/formatDate'
 
 export default async function Home() {
-  const res = await getData('notes', { _limit: 9 })
+  const res = await getData('notes', { _limit: 9, _sort: 'id', _order: 'desc' })
   return (
     <div>
       <div className="">
