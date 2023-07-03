@@ -1,4 +1,5 @@
 import { getData } from '@/app/utils/getData'
+import formatDate from '@/app/utils/formatDate'
 
 interface Note {
   title: string
@@ -23,7 +24,7 @@ export default async function Note({ params }: { params: { slug: string } }) {
               <h2 className="text-3xl font-medium">{data.title}</h2>
             </div>
             <div>
-              <p>{data.created_date}</p>
+              <p>{formatDate(data.created_date)}</p>
             </div>
             <div className="mt-10">
               <p>{data.content}</p>

@@ -2,6 +2,7 @@ import Image from 'next/image'
 import styles from './styles/Home.module.css'
 import Link from 'next/link'
 import { getData } from '@/app/utils/getData'
+import formatDate from '@/app/utils/formatDate'
 
 export default async function Home() {
   const res = await getData('notes', { _limit: 9 })
@@ -29,7 +30,10 @@ export default async function Home() {
             <Link href={`/note/${item.id}`} key={item.id} className="note-link">
               <div className="h-36 p-4 border border-gray-200 rounded-md">
                 <p className="font-medium">{item.title}</p>
-                <p className="text-sm mt-3  line-clamp-3">{item.content}</p>
+                <p className="text-xs text-gray-500">
+                  {formatDate(item.created_date)}
+                </p>
+                <p className="text-sm mt-3 line-clamp-3">{item.content}</p>
               </div>
             </Link>
           ))}
