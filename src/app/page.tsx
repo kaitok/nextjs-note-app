@@ -1,10 +1,11 @@
 import Image from 'next/image'
 import styles from './styles/Home.module.css'
 import Link from 'next/link'
-import { getData } from '@/app/utils/getData'
+import { getData } from '@/app/utils/apiRequest'
+import formatDate from '@/app/utils/formatDate'
 
 export default async function Home() {
-  const res = await getData('notes', {})
+  const res = await getData('notes', { _limit: 9, _sort: 'id', _order: 'desc' })
   return (
     <div>
       <div className="">
@@ -24,18 +25,18 @@ export default async function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col w-full border-opacity-50">
-          {res.map((item, i) => {
-            return (
-              <div
-                className="h-20 p-4 mb-5 border border-gray-200 rounded-md cursor-pointer"
-                key={i}
-              >
-                <p>{item.title}</p>
-                <p>{item.content}</p>
+        <div className="grid grid-cols-3 gap-4">
+          {res.map((item, i) => (
+            <Link href={`/note/${item.id}`} key={item.id} className="note-link">
+              <div className="h-36 p-4 border border-gray-200 rounded-md">
+                <p className="font-medium">{item.title}</p>
+                <p className="text-xs text-gray-500">
+                  {formatDate(item.created_date)}
+                </p>
+                <p className="text-sm mt-3 line-clamp-3">{item.content}</p>
               </div>
-            )
-          })}
+            </Link>
+          ))}
         </div>
       </div>
     </div>
