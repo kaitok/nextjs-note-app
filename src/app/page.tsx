@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { getData } from '@/app/utils/getData'
 
 export default async function Home() {
-  const res = await getData('notes', {})
+  const res = await getData('notes', { _limit: 9 })
   return (
     <div>
       <div className="">
