@@ -24,20 +24,15 @@ export default async function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col w-full border-opacity-50">
-          {res.map((item, i) => {
-            return (
-              <Link
-                href={`/note/${item.id}`}
-                key={item.id}
-                className="note-link"
-              >
-                <div className="h-20 p-4 mb-5 border border-gray-200 rounded-md cursor-pointer">
-                  <p>{item.title}</p>
-                </div>
-              </Link>
-            )
-          })}
+        <div className="grid grid-cols-3 gap-4">
+          {res.map((item, i) => (
+            <Link href={`/note/${item.id}`} key={item.id} className="note-link">
+              <div className="h-36 p-4 border border-gray-200 rounded-md">
+                <p className="font-medium">{item.title}</p>
+                <p className="text-sm mt-3  line-clamp-3">{item.content}</p>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </div>
