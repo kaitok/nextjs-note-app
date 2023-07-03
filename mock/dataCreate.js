@@ -21,10 +21,14 @@ function generateRandomTags() {
 
 function generateRandomNotes(dataCount) {
   const notes = []
+  const startDate = new Date(2022, 0, 1)
+  const interval = 24 * 60 * 60 * 1000
 
   for (let i = 1; i <= dataCount; i++) {
-    const createdDate = generateRandomDate(new Date(2022, 0, 1), new Date())
-    const updatedDate = generateRandomDate(createdDate, new Date())
+    const createdDate = new Date(startDate.getTime() + (i - 1) * interval)
+    const updatedDate = new Date(
+      startDate.getTime() + (i - 1) * interval + Math.random() * interval
+    )
     const note = {
       id: i,
       title: `Note ${i}`,
