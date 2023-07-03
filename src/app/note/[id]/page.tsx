@@ -1,4 +1,4 @@
-import { getData } from '@/app/utils/getData'
+import { getData } from '@/app/utils/apiRequest'
 import formatDate from '@/app/utils/formatDate'
 
 interface Note {

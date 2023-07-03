@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import styles from './styles/Home.module.css'
 import Link from 'next/link'
-import { getData } from '@/app/utils/getData'
+import { getData } from '@/app/utils/apiRequest'
 import formatDate from '@/app/utils/formatDate'
 
 export default async function Home() {
