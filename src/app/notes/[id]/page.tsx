@@ -30,11 +30,13 @@ export default async function Note({ params }: { params: { slug: string } }) {
               <p>{data.content}</p>
             </div>
 
-            <div className="mt-3 flex justify-between content-end">
+            <div className="fixed bottom-10 left-10 right-10 flex justify-between content-end items-center">
               <div className="flex gap-4">
                 {data.tags &&
-                  data.tags.map((v) => (
-                    <div className="badge badge-ghost">{v}</div>
+                  data.tags.map((tag) => (
+                    <div key={tag} className="badge badge-ghost">
+                      {tag}
+                    </div>
                   ))}
               </div>
               <div className="text-xs text-gray-500">
