@@ -5,7 +5,7 @@ import { get } from '@/app/utils/apiRequest'
 import formatDate from '@/app/utils/formatDate'
 
 export default async function Home() {
-  const res = await get('notes', { _limit: 9, _sort: 'id', _order: 'desc' })
+  const res = await get('notes', { _limit: 15, _sort: 'id', _order: 'desc' })
   return (
     <div>
       <div className="">
@@ -25,7 +25,7 @@ export default async function Home() {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-3 gap-4 sm:grid-cols-2">
           {res.map((item, i) => (
             <Link
               href={`/notes/${item.id}`}
