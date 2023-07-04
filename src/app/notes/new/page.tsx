@@ -1,12 +1,14 @@
 'use client'
 import { useState } from 'react'
-import { postData } from '@/app/utils/apiRequest'
+import { post } from '@/app/utils/apiRequest'
+import { useRouter } from 'next/navigation'
 
 export default function Notes() {
   const [formData, setFormData] = useState({
     title: '',
     content: '',
   })
+  const router = useRouter()
 
   const handleChange = (e) => {
     setFormData({
@@ -27,8 +29,9 @@ export default function Notes() {
     }
 
     try {
-      await postData('notes', requestData)
+      const res = await post('notes', requestData)
       console.log('Form submitted successfully')
+      router.push(`/notes/${res.id}`)
     } catch (error) {
       console.error('Error while submitting form:', error)
     }

@@ -1,4 +1,4 @@
-import { getData } from '@/app/utils/apiRequest'
+import { get } from '@/app/utils/apiRequest'
 import formatDate from '@/app/utils/formatDate'
 
 interface Note {
@@ -8,7 +8,7 @@ interface Note {
 }
 
 export default async function Note({ params }: { params: { slug: string } }) {
-  const res = await getData('notes', { id: params.id })
+  const res = await get('notes', { id: params.id })
   let data: Note | undefined
 
   if (res.length !== 0) {
