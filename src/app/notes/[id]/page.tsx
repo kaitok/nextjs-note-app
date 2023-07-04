@@ -3,8 +3,10 @@ import formatDate from '@/app/utils/formatDate'
 
 interface Note {
   title: string
-  created_date: string
   content: string
+  created_date: string
+  updated_date: string
+  tags: [string]
 }
 
 export default async function Note({ params }: { params: { slug: string } }) {
@@ -23,11 +25,20 @@ export default async function Note({ params }: { params: { slug: string } }) {
             <div>
               <h2 className="text-3xl font-medium">{data.title}</h2>
             </div>
-            <div>
-              <p>{formatDate(data.created_date)}</p>
-            </div>
+
             <div className="mt-10">
               <p>{data.content}</p>
+            </div>
+
+            <div className="mt-10 text-xs text-gray-500">
+              <p>Created Date: {formatDate(data.created_date)}</p>
+              <p>Edit Date: {formatDate(data.updated_date)}</p>
+            </div>
+            <div className="mt-3 flex gap-4">
+              {data.tags &&
+                data.tags.map((v) => (
+                  <div className="badge badge-ghost">{v}</div>
+                ))}
             </div>
           </>
         ) : (
