@@ -35,6 +35,18 @@ export default function Note({ params }: { params: { id: string } }) {
     fetchData()
   }, [])
 
+  useEffect(() => {
+    const handleRouteChange = () => {
+      router.push('/')
+    }
+
+    window.addEventListener('popstate', handleRouteChange)
+
+    return () => {
+      window.removeEventListener('popstate', handleRouteChange)
+    }
+  }, [])
+
   if (data === undefined) {
     return <p>Loading...</p>
   }

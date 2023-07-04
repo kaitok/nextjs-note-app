@@ -31,7 +31,7 @@ export default function Notes() {
     try {
       const res = await post('notes', requestData)
       console.log('Form submitted successfully')
-      router.push(`/notes/${res.id}`)
+      router.replace(`/notes/${res.id}`)
     } catch (error) {
       console.error('Error while submitting form:', error)
     }
