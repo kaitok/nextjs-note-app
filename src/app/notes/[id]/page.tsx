@@ -1,5 +1,10 @@
-import { get } from '@/app/utils/apiRequest'
+'use client'
+import { deleteData, get } from '@/app/utils/apiRequest'
 import formatDate from '@/app/utils/formatDate'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashCan, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+import { useRouter } from 'next/navigation'
+import { useState, useEffect } from 'react'
 
 interface Note {
   title: string
@@ -9,17 +14,51 @@ interface Note {
   tags: [string]
 }
 
-export default async function Note({ params }: { params: { slug: string } }) {
-  const res = await get('notes', { id: params.id })
-  let data: Note | undefined
+export default function Note({ params }: { params: { id: string } }) {
+  const [data, setData] = useState<Note | undefined>(undefined)
+  const router = useRouter()
+  const { id } = params
 
-  if (res.length !== 0) {
-    data = res[0]
+  const fetchData = async () => {
+    const res = await get('notes', { id })
+    if (res.length !== 0) {
+      setData(res[0])
+    }
+  }
+
+  const handleDelete = async () => {
+    await deleteData('notes', id)
+    router.replace('/')
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  if (data === undefined) {
+    return <p>Loading...</p>
   }
 
   return (
     <>
-      <div className="flex flex-col gap-1 mt-5">
+      <div className="flex flex-col gap-1 mt-2">
+        <div className="w-full flex justify-end gap-2">
+          <button
+            type="button"
+            className="flex items-center gap-1 py-2 px-4 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-4 focus:ring-gray-200"
+          >
+            <FontAwesomeIcon icon={faPenToSquare} className="h-[12px]" />
+            Edit
+          </button>
+          <button
+            type="button"
+            className="flex items-center gap-1 py-2 px-4 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-4 focus:ring-gray-200"
+            onClick={handleDelete}
+          >
+            <FontAwesomeIcon icon={faTrashCan} className="h-[12px]" />
+            Delete
+          </button>
+        </div>
         {data ? (
           <>
             <div>
