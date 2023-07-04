@@ -21,7 +21,7 @@ function generateRandomTags() {
 
 function generateRandomNotes(dataCount) {
   const notes = []
-  const startDate = new Date(2022, 0, 1)
+  const startDate = new Date(2023, 0, 1)
   const interval = 24 * 60 * 60 * 1000
 
   for (let i = 1; i <= dataCount; i++) {
@@ -47,7 +47,7 @@ const dataCount = 50
 const notesData = generateRandomNotes(dataCount)
 const jsonData = JSON.stringify({ notes: notesData }, null, 2)
 
-fs.writeFile('./mock/notesData.json', jsonData, (err) => {
+fs.writeFile('./mock/data/notesData.json', jsonData, (err) => {
   if (err) {
     console.error('Error writing JSON file:', err)
   } else {
