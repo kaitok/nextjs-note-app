@@ -10,6 +10,10 @@
     "json-server": "json-server --watch ./mock/notesData.json --port 4000"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@types/node": "20.3.1",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
@@ -17,7 +21,7 @@
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
     "json-server": "^0.17.3",
-    "next": "13.4.7",
+    "next": "13.4.4",
     "postcss": "8.4.24",
     "react": "18.2.0",
     "react-dom": "18.2.0",
