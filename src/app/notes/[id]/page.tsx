@@ -26,19 +26,21 @@ export default async function Note({ params }: { params: { slug: string } }) {
               <h2 className="text-3xl font-medium">{data.title}</h2>
             </div>
 
-            <div className="mt-10">
+            <div className="mt-10 h-96">
               <p>{data.content}</p>
             </div>
 
-            <div className="mt-10 text-xs text-gray-500">
-              <p>Created Date: {formatDate(data.created_date)}</p>
-              <p>Edit Date: {formatDate(data.updated_date)}</p>
-            </div>
-            <div className="mt-3 flex gap-4">
-              {data.tags &&
-                data.tags.map((v) => (
-                  <div className="badge badge-ghost">{v}</div>
-                ))}
+            <div className="mt-3 flex justify-between content-end">
+              <div className="flex gap-4">
+                {data.tags &&
+                  data.tags.map((v) => (
+                    <div className="badge badge-ghost">{v}</div>
+                  ))}
+              </div>
+              <div className="text-xs text-gray-500">
+                <p>Created Date: {formatDate(data.created_date)}</p>
+                <p>Edit Date: {formatDate(data.updated_date)}</p>
+              </div>
             </div>
           </>
         ) : (
