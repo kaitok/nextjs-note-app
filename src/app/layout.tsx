@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navigation></Navigation>
-        <div className="p-10">{children}</div>
+        <div className="px-8 py-12">{children}</div>
       </body>
     </html>
   )
