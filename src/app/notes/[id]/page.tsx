@@ -26,7 +26,7 @@ export default async function Note({ params }: { params: { slug: string } }) {
               <h2 className="text-3xl font-medium">{data.title}</h2>
             </div>
 
-            <div className="mt-10 h-96">
+            <div className="mt-10 h-96 min-h-[60vh]">
               <p>{data.content}</p>
             </div>
 
