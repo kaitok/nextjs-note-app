@@ -1,6 +1,6 @@
 import type { QueryParams } from '@/app/types/queryParams'
 
-export async function getData(path:string , params: QueryParams) {
+export async function get(path: string, params: QueryParams) {
   const queryParams = new URLSearchParams(params)
   const res = await fetch(`http://localhost:4000/${path}?` + queryParams, { cache: 'no-store' })
   if (!res.ok) {
@@ -10,7 +10,7 @@ export async function getData(path:string , params: QueryParams) {
   return res.json()
 }
 
-export async function postData(path:string , data: Object) {
+export async function post(path: string, data: Object) {
   try {
     const response = await fetch(`http://localhost:4000/${path}?`, {
       method: "POST",
@@ -29,5 +29,23 @@ export async function postData(path:string , data: Object) {
     return result
   } catch (error) {
     console.error("Error while making POST request:", error);
+  }
+}
+
+export async function deleteData(path: string, id: string) {
+  try {
+    const response = await fetch(`http://localhost:4000/${path}/${id}`, {
+      method: 'DELETE',
+      mode: 'cors'
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to delete data.');
+    }
+
+    const deletedData = await response.json();
+    console.log('Deleted data:', deletedData);
+  } catch (error) {
+    console.error('Error while deleting data:', error);
   }
 }

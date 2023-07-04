@@ -1,6 +1,6 @@
 export default function Navigation() {
   return (
-    <div className="navbar bg-base-100 pt-5 px-5">
+    <div className="navbar bg-base-100 pt-5 px-8">
       <div className="flex-1">
         <a href="/" className="text-xl font-semibold">
           Note
@@ -16,8 +16,8 @@ export default function Navigation() {
         </div>
         <div className="dropdown dropdown-end">
           <label tabindex="0" className="btn btn-ghost btn-circle avatar">
-            <div class="avatar placeholder">
-              <div class="bg-neutral-focus text-neutral-content rounded-full w-10">
+            <div className="avatar placeholder">
+              <div className="bg-neutral-focus text-neutral-content rounded-full w-10">
                 <span></span>
               </div>
             </div>
