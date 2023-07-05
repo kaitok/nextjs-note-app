@@ -15,7 +15,7 @@ interface Note {
 }
 
 export default function Note({ params }: { params: { id: string } }) {
-  const [data, setData] = useState<Note | undefined>(undefined)
+  const [data, setData] = useState<undefined | {} | Note>(undefined)
   const router = useRouter()
   const { id } = params
 
@@ -23,6 +23,8 @@ export default function Note({ params }: { params: { id: string } }) {
     const res = await get('notes', { id })
     if (res.length !== 0) {
       setData(res[0])
+    } else {
+      setData({})
     }
   }
 
@@ -51,6 +53,10 @@ export default function Note({ params }: { params: { id: string } }) {
     return <p>Loading...</p>
   }
 
+  if (Object.keys(data).length === 0) {
+    return <p>No data available.</p>
+  }
+
   return (
     <>
       <div className="flex flex-col gap-1 mt-2">
@@ -71,7 +77,7 @@ export default function Note({ params }: { params: { id: string } }) {
             Delete
           </button>
         </div>
-        {data ? (
+        {data && (
           <>
             <div>
               <h2 className="text-3xl font-medium">{data.title}</h2>
@@ -96,8 +102,6 @@ export default function Note({ params }: { params: { id: string } }) {
               </div>
             </div>
           </>
-        ) : (
-          <p>No data available.</p>
         )}
       </div>
     </>
