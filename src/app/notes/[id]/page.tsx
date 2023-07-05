@@ -15,7 +15,7 @@ interface Note {
 }
 
 export default function Note({ params }: { params: { id: string } }) {
-  const [data, setData] = useState<undefined | {} | Note>(undefined)
+  const [data, setData] = useState<undefined | null | Note>(undefined)
   const router = useRouter()
   const { id } = params
 
@@ -24,7 +24,7 @@ export default function Note({ params }: { params: { id: string } }) {
     if (res.length !== 0) {
       setData(res[0])
     } else {
-      setData({})
+      setData(null)
     }
   }
 
@@ -53,7 +53,7 @@ export default function Note({ params }: { params: { id: string } }) {
     return <p>Loading...</p>
   }
 
-  if (Object.keys(data).length === 0) {
+  if (data === null) {
     return <p>No data available.</p>
   }
 
