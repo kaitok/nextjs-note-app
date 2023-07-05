@@ -49,3 +49,24 @@ export async function deleteData(path: string, id: string) {
     console.error('Error while deleting data:', error);
   }
 }
+
+export async function patchData(path: string, data: Object) {
+  
+  try {
+    const response = await fetch(`http://localhost:4000/${path}/${data.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    if (response.ok) {
+      console.log("Update request successful.");
+    } else {
+      console.log("Failed to update data.");
+
+    }
+  } catch (error) {
+    console.error('Error while updating data:', error);
+  }
+}
