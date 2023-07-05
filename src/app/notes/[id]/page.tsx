@@ -5,14 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
-
-interface Note {
-  title: string
-  content: string
-  created_date: string
-  updated_date: string
-  tags: [string]
-}
+import Link from 'next/link'
+import { Note } from '@/app/types/note'
 
 export default function Note({ params }: { params: { id: string } }) {
   const [data, setData] = useState<undefined | null | Note>(undefined)
@@ -24,7 +18,7 @@ export default function Note({ params }: { params: { id: string } }) {
     if (res.length !== 0) {
       setData(res[0])
     } else {
-      setData(null)
+      setData({})
     }
   }
 
@@ -53,7 +47,7 @@ export default function Note({ params }: { params: { id: string } }) {
     return <p>Loading...</p>
   }
 
-  if (data === null) {
+  if (Object.keys(data).length === 0) {
     return <p>No data available.</p>
   }
 
@@ -61,13 +55,15 @@ export default function Note({ params }: { params: { id: string } }) {
     <>
       <div className="flex flex-col gap-1 mt-2">
         <div className="w-full flex justify-end gap-2">
-          <button
-            type="button"
-            className="flex items-center gap-1 py-2 px-4 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-4 focus:ring-gray-200"
-          >
-            <FontAwesomeIcon icon={faPenToSquare} className="h-[12px]" />
-            Edit
-          </button>
+          <Link href={`/notes/${data.id}/edit`}>
+            <button
+              type="button"
+              className="flex items-center gap-1 py-2 px-4 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-4 focus:ring-gray-200"
+            >
+              <FontAwesomeIcon icon={faPenToSquare} className="h-[12px]" />
+              Edit
+            </button>
+          </Link>
           <button
             type="button"
             className="flex items-center gap-1 py-2 px-4 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-4 focus:ring-gray-200"
