@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { patchData, get } from '@/app/utils/apiRequest'
+import { patchData, getData } from '@/app/utils/apiRequest'
 import { useRouter } from 'next/navigation'
 import { Note } from '@/app/types/note'
 
@@ -14,9 +14,9 @@ export default function Note({ params }: { params: { id: string } }) {
   const { id } = params
 
   const fetchData = async () => {
-    const res = await get('notes', { id })
-    if (res.length !== 0) {
-      setFormData(res[0])
+    const res = await getData('notes', { id })
+    if (res.body.length !== 0) {
+      setFormData(res.body[0])
     } else {
       setFormData({})
     }
