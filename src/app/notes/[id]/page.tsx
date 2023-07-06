@@ -1,5 +1,5 @@
 'use client'
-import { deleteData, get } from '@/app/utils/apiRequest'
+import { deleteData, getData } from '@/app/utils/apiRequest'
 import formatDate from '@/app/utils/formatDate'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
@@ -14,9 +14,9 @@ export default function Note({ params }: { params: { id: string } }) {
   const { id } = params
 
   const fetchData = async () => {
-    const res = await get('notes', { id })
-    if (res.length !== 0) {
-      setData(res[0])
+    const res = await getData('notes', { id })
+    if (res.body.length !== 0) {
+      setData(res.body[0])
     } else {
       setData({})
     }

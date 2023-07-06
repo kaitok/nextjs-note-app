@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { post } from '@/app/utils/apiRequest'
+import { postData } from '@/app/utils/apiRequest'
 import { useRouter } from 'next/navigation'
 
 export default function Notes() {
@@ -29,7 +29,7 @@ export default function Notes() {
     }
 
     try {
-      const res = await post('notes', requestData)
+      const res = await postData('notes', requestData)
       console.log('Form submitted successfully')
       router.replace(`/notes/${res.id}`)
     } catch (error) {
