@@ -6,6 +6,12 @@
 node mock/dataCreate.js
 ```
 
+## Setup .env
+
+```bash
+cp .env.exmaple .env
+```
+
 ## Buid & Run
 
 ```bash
