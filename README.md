@@ -6,9 +6,16 @@
 node mock/dataCreate.js
 ```
 
-## Run the development server:
+## Buid & Run
 
 ```bash
+docker compose build
+docker compose up -d
+```
+
+## Run json-server
+
+```bash
+docker compose exec -it web sh
 npm run json-server
-npm run dev
 ```
