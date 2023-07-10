@@ -1,11 +1,14 @@
-import Image from 'next/image'
-import styles from './styles/Home.module.css'
 import Link from 'next/link'
-import { getData } from '@/app/utils/apiRequest'
 import formatDate from '@/app/utils/formatDate'
+import prisma from '@/../prisma/prisma'
 
 export default async function Home() {
-  let res = await getData('notes', { _limit: 15, _sort: 'id', _order: 'desc' })
+  const res = await prisma.note.findMany({
+    take: 15,
+    orderBy: {
+      id: 'desc',
+    },
+  })
   return (
     <div>
       <div className="">
@@ -26,7 +29,7 @@ export default async function Home() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-4 sm:grid-cols-2">
-          {res.body.map((item, i) => (
+          {res.map((item, i) => (
             <Link
               href={`/notes/${item.id}`}
               key={item.id}
