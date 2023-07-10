@@ -34,7 +34,7 @@ export async function postData(path: string, data: Object) {
 
 export async function deleteData(path: string, id: string) {
   try {
-    const response = await fetch(`http://localhost:4000/${path}/${id}`, {
+    const response = await fetch(`http://localhost:3000/api/${path}/${id}`, {
       method: 'DELETE',
       mode: 'cors'
     });
