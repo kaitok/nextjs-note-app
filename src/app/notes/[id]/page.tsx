@@ -1,100 +1,62 @@
-'use client'
-import { deleteData, getData } from '@/app/utils/apiRequest'
+// 'use server'
+// import { deleteData, getData } from '@/app/utils/apiRequest'
 import formatDate from '@/app/utils/formatDate'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashCan, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
-import { useRouter } from 'next/navigation'
-import { useState, useEffect } from 'react'
+
+// import { useRouter } from 'next/navigation'
+// import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Note } from '@/app/types/note'
+import { getQuery, deleteQuery } from '@/app/utils/query'
+import EditButton from '@/app/components/EditButton'
+import DeleteButton from '@/app/components/DeleteButton'
+import HandleRoute from '@/app/components/HandleRoute'
 
-export default function Note({ params }: { params: { id: string } }) {
-  const [data, setData] = useState<undefined | null | Note>(undefined)
-  const router = useRouter()
+export default async function Note({ params }: { params: { id: string } }) {
   const { id } = params
+  let res: Note
 
-  const fetchData = async () => {
-    const res = await getData('notes', { id })
-    if (res.body.length !== 0) {
-      setData(res.body[0])
-    } else {
-      setData({})
-    }
-  }
-
-  const handleDelete = async () => {
-    await deleteData('notes', id)
-    router.replace('/')
-  }
-
-  useEffect(() => {
-    fetchData()
-  }, [])
-
-  useEffect(() => {
-    const handleRouteChange = () => {
-      router.push('/')
-    }
-
-    window.addEventListener('popstate', handleRouteChange)
-
-    return () => {
-      window.removeEventListener('popstate', handleRouteChange)
-    }
-  }, [])
-
-  if (data === undefined) {
-    return <p>Loading...</p>
-  }
-
-  if (Object.keys(data).length === 0) {
+  try {
+    res = await getQuery('note', id)
+  } catch (e) {
     return <p>No data available.</p>
   }
 
+  // const deleteData = async () => {
+  //   await deleteQuery('note', id)
+  // }
+
   return (
     <>
+      <HandleRoute />
       <div className="flex flex-col gap-1 mt-2">
-        <div className="w-full flex justify-end gap-2">
-          <Link href={`/notes/${data.id}/edit`}>
-            <button
-              type="button"
-              className="flex items-center gap-1 py-2 px-4 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-4 focus:ring-gray-200"
-            >
-              <FontAwesomeIcon icon={faPenToSquare} className="h-[12px]" />
-              Edit
-            </button>
-          </Link>
-          <button
-            type="button"
-            className="flex items-center gap-1 py-2 px-4 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:z-10 focus:ring-4 focus:ring-gray-200"
-            onClick={handleDelete}
-          >
-            <FontAwesomeIcon icon={faTrashCan} className="h-[12px]" />
-            Delete
-          </button>
-        </div>
-        {data && (
+        {res && (
           <>
+            <div className="w-full flex justify-end gap-2">
+              <Link href={`/notes/${res.id}/edit`}>
+                <EditButton />
+              </Link>
+              <DeleteButton id={res.id} />
+            </div>
             <div>
-              <h2 className="text-3xl font-medium">{data.title}</h2>
+              <h2 className="text-3xl font-medium">{res.title}</h2>
             </div>
 
             <div className="mt-10 h-96 min-h-[60vh]">
-              <p>{data.content}</p>
+              <p>{res.content}</p>
             </div>
 
             <div className="fixed bottom-10 left-10 right-10 flex justify-between content-end items-center">
               <div className="flex gap-4">
-                {data.tags &&
-                  data.tags.map((tag) => (
+                {res.tags &&
+                  res.tags.map((tag) => (
                     <div key={tag} className="badge badge-ghost">
                       {tag}
                     </div>
                   ))}
               </div>
               <div className="text-xs text-gray-500">
-                <p>Created Date: {formatDate(data.created_date)}</p>
-                <p>Edit Date: {formatDate(data.updated_date)}</p>
+                <p>Created Date: {formatDate(res.created_date)}</p>
+                <p>Edit Date: {formatDate(res.updated_date)}</p>
               </div>
             </div>
           </>
