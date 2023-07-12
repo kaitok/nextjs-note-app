@@ -28,3 +28,9 @@ docker compose exec -it mongo sh
 mongosh
 rs.initiate({_id: 'rs0', members: [{_id: 0, host: 'mongo:27017'}]});
 ```
+
+Add hostname to `/etc/hosts`
+
+```
+127.0.0.1    mongo
+```
