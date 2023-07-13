@@ -1,9 +1,4 @@
-// 'use server'
-// import { deleteData, getData } from '@/app/utils/apiRequest'
 import formatDate from '@/app/utils/formatDate'
-
-// import { useRouter } from 'next/navigation'
-// import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Note } from '@/app/types/note'
 import { getQuery, deleteQuery } from '@/app/utils/query'
@@ -20,10 +15,6 @@ export default async function Note({ params }: { params: { id: string } }) {
   } catch (e) {
     return <p>No data available.</p>
   }
-
-  // const deleteData = async () => {
-  //   await deleteQuery('note', id)
-  // }
 
   return (
     <>
