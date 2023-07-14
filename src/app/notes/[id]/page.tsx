@@ -1,7 +1,7 @@
 import formatDate from '@/app/utils/formatDate'
 import Link from 'next/link'
 import { Note } from '@/app/types/note'
-import { getQuery, deleteQuery } from '@/app/utils/query'
+import { getQuery } from '@/app/utils/prismaQuery'
 import EditButton from '@/app/components/EditButton'
 import DeleteButton from '@/app/components/DeleteButton'
 import HandleRoute from '@/app/components/HandleRoute'
