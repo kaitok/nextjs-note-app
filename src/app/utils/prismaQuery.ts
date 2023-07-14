@@ -8,10 +8,8 @@ export async function getQuery(model: string, id: string) {
       },
     })
     
-    // データが存在しない場合の処理
     if (!res) {
-      // データがない場合の処理を記述する
-      // 例: throw new Error('No data available')
+      throw new Error('No data available')
     }
     
     return res;
@@ -21,6 +19,15 @@ export async function getQuery(model: string, id: string) {
   }
 }
 
+export async function updateQuery(model: string, id: string, formData: FormData) {
+  await prisma[model].update({
+    where: { id },
+    data: {
+      title: formData.get('title'),
+      content: formData.get('content'),
+    },
+  });
+}
 
 export async function deleteQuery(model: string, id: string) {
   await prisma[model].delete({
