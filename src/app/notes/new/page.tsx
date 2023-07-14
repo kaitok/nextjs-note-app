@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { postData } from '@/app/utils/apiRequest'
+// import { postData } from '@/app/utils/apiRequest'
 import { useRouter } from 'next/navigation'
 
 export default function Notes() {
