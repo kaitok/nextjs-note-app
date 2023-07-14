@@ -1,10 +1,9 @@
 # Note
 
-## Create mock data
+- Next.js App Router
+- Server Actions
+- MongoDB + Prisma
 
-```bash
-node mock/dataCreate.js
-```
 
 ## Setup .env
 
