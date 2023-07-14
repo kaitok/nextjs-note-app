@@ -19,14 +19,26 @@ export async function getQuery(model: string, id: string) {
   }
 }
 
+export async function createQuery(model: string, formData: FormData) {
+  await prisma[model].create({
+    data: {
+      title: formData.get('title'),
+      content: formData.get('content'),
+      created_date: new Date(),
+      updated_date: new Date()
+    }
+  })
+}
+
 export async function updateQuery(model: string, id: string, formData: FormData) {
   await prisma[model].update({
     where: { id },
     data: {
       title: formData.get('title'),
       content: formData.get('content'),
+      updated_date: new Date()
     },
-  });
+  })
 }
 
 export async function deleteQuery(model: string, id: string) {
