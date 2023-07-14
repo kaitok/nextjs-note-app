@@ -38,7 +38,7 @@ export default async function Home() {
               <div className="h-36 p-4 border border-gray-200 rounded-md">
                 <p className="font-medium">{item.title}</p>
                 <p className="text-xs text-gray-500">
-                  {formatDate(item.created_date)}
+                  {formatDate(item.updated_date)}
                 </p>
                 <p className="text-sm mt-3 line-clamp-3">{item.content}</p>
               </div>
