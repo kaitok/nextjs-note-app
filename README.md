@@ -3,6 +3,7 @@ Example note app with Next.js app router, server actions.
 - Next.js App Router
 - Server Actions
 - MongoDB + Prisma
+- Tailwind CSS, daisyUI
 
 
 ## Setup .env
