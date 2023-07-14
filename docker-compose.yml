@@ -11,7 +11,7 @@ services:
       - ./:/usr/src/app
     ports:
       - "3000:3000"
-      - "4000:4000"
+      - "5555:5555"
     depends_on:
       - mongo
   mongo:
@@ -23,6 +23,3 @@ services:
       - ./data:/data/db
     ports:
       - "27017:27017"
-      - "28017:28017"
-
-  
