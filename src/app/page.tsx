@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import formatDate from '@/app/utils/formatDate'
 import prisma from '@/../prisma/prisma'
 
 export default async function Home() {
@@ -38,7 +37,7 @@ export default async function Home() {
               <div className="h-36 p-4 border border-gray-200 rounded-md">
                 <p className="font-medium">{item.title}</p>
                 <p className="text-xs text-gray-500">
-                  {formatDate(item.updated_date)}
+                  {item.updated_date.toDateString()}
                 </p>
                 <p className="text-sm mt-3 line-clamp-3">{item.content}</p>
               </div>
