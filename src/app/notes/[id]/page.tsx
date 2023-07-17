@@ -1,6 +1,4 @@
-import formatDate from '@/app/utils/formatDate'
 import Link from 'next/link'
-import { Note } from '@/app/types/note'
 import { getQuery } from '@/app/utils/prismaQuery'
 import EditButton from '@/app/components/EditButton'
 import DeleteButton from '@/app/components/DeleteButton'
@@ -8,11 +6,13 @@ import HandleRoute from '@/app/components/HandleRoute'
 
 export default async function Note({ params }: { params: { id: string } }) {
   const { id } = params
-  let res: Note
+  let res
 
   try {
     res = await getQuery('note', id)
+    console.log(res)
   } catch (e) {
+    console.log(e)
     return <p>No data available.</p>
   }
 
@@ -46,8 +46,8 @@ export default async function Note({ params }: { params: { id: string } }) {
                   ))}
               </div>
               <div className="text-xs text-gray-500">
-                <p>Created Date: {formatDate(res.created_date)}</p>
-                <p>Edit Date: {formatDate(res.updated_date)}</p>
+                <p>Created Date: {res.created_date.toDateString()}</p>
+                <p>Edit Date: {res.updated_date.toDateString()}</p>
               </div>
             </div>
           </>

@@ -15,17 +15,14 @@ export default function Navigation() {
           />
         </div>
         <div className="dropdown dropdown-end">
-          <label tabindex="0" className="btn btn-ghost btn-circle avatar">
+          <label className="btn btn-ghost btn-circle avatar">
             <div className="avatar placeholder">
               <div className="bg-neutral-focus text-neutral-content rounded-full w-10">
                 <span></span>
               </div>
             </div>
           </label>
-          <ul
-            tabindex="0"
-            className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-          >
+          <ul className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
             <li>
               <a className="justify-between">
                 Profile

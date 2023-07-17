@@ -1,6 +1,8 @@
 import prisma from '@/../prisma/prisma'
+import { Note } from '@prisma/client';
 
-export async function getQuery(model: string, id: string) {
+
+export async function getQuery(model: string, id: string): Promise<Note> {
   try {
     const res = await prisma[model].findUnique({
       where: {
