@@ -1,4 +1,4 @@
-import { Note } from '@/app/types/note'
+// import { Note } from '@/app/types/note'
 import { getQuery, updateQuery } from '@/app/utils/prismaQuery'
 import { redirect } from 'next/navigation'
 
@@ -36,7 +36,7 @@ export default async function Note({ params }: { params: { id: string } }) {
             </label>
             <textarea
               className="textarea textarea-bordered w-full"
-              rows="10"
+              rows={10}
               placeholder="Note"
               name="content"
               defaultValue={data.content}

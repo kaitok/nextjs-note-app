@@ -31,7 +31,7 @@ export default function Notes() {
             </label>
             <textarea
               className="textarea textarea-bordered w-full"
-              rows="10"
+              rows={10}
               placeholder="Note"
               name="content"
             ></textarea>
