@@ -1,13 +1,22 @@
 import Link from 'next/link'
 import prisma from '@/../prisma/prisma'
+import Pagination from './components/Pagination'
 
-export default async function Home() {
+export default async function Home({ searchParams }) {
+  const itemsPerPage = 2
+  const currentPage = parseInt(searchParams.page) || 1
+
+  const totalCount = await prisma.note.count()
+  const totalPages = Math.ceil(totalCount / itemsPerPage)
+
   const res = await prisma.note.findMany({
-    take: 15,
+    skip: (currentPage - 1) * itemsPerPage,
+    take: itemsPerPage,
     orderBy: {
       id: 'desc',
     },
   })
+
   return (
     <div>
       <div className="">
@@ -43,6 +52,14 @@ export default async function Home() {
               </div>
             </Link>
           ))}
+        </div>
+
+        <div className="mt-10">
+          <Pagination
+            totalCount={totalCount}
+            itemsPerPage={itemsPerPage}
+            paginationSize={3}
+          />
         </div>
       </div>
     </div>
